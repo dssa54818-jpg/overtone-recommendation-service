@@ -1,4 +1,4 @@
-## 📄 README.md Template
+## 📄 README.md 
 
 ```markdown
 # Overtone Recommendation Service (FastAPI & MongoDB Atlas)
