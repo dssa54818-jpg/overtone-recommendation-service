@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  recommendation-service:
+    build: .
+    container_name: recommendation-service
+    ports:
+      - "8081:8000"
+    depends_on:
+      - mongo
+    networks:
+      - overtone
+
+  mongo:
+    image: mongo:6.0
+    container_name: recommendation-mongo
+    ports:
+      - "27018:27017"
+    networks:
+      - overtone
+
+networks:
+  overtone:
+    driver: bridge
