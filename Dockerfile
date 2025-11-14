@@ -1,10 +1,9 @@
-# Dockerfile (обновлено)
+# Dockerfile (РѕР±РЅРѕРІР»РµРЅРѕ)
 FROM python:3.11-slim
 
 WORKDIR /app
 
-# Шаг 1: Установка системных сертификатов для SSL/TLS-подключения к MongoDB Atlas
-# Это требование задания для решения проблем с TLS/SSL 
+# РЁР°Рі 1: РЈСЃС‚Р°РЅРѕРІРєР° СЃРёСЃС‚РµРјРЅС‹С… СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ (РўСЂРµР±РѕРІР°РЅРёРµ Р·Р°РґР°РЅРёСЏ 4)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates openssl && \
     update-ca-certificates && \
@@ -13,7 +12,6 @@ RUN apt-get update && \
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# Копируем директорию приложения после установки зависимостей
 COPY ./app ./app
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
