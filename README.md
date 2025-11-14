@@ -13,8 +13,8 @@ This project was completed as part of **Assignment 4: Deploying a FastAPI Applic
 
 | Service | Status | Live URL |
 | :--- | :--- | :--- |
-| **Recommendation Service** | **Deployed** | `[INSERT YOUR LIVE RENDER URL HERE]` |
-| **Health Endpoint** | **Working** | `[INSERT YOUR LIVE RENDER URL HERE]/health/db` |
+| **Recommendation Service** | **Deployed** | `https://dashboard.render.com/web/srv-d4bg4abuibrs739s6lgg/logs` |
+| **Health Endpoint** | **Working** | `https://dashboard.render.com/web/srv-d4bg4abuibrs739s6lgg/logs/health/db` |
 
 ---
 
