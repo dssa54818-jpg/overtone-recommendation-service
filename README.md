@@ -1,12 +1,11 @@
-
-
+## 📄 README.md Template
 
 ```markdown
 # Overtone Recommendation Service (FastAPI & MongoDB Atlas)
 
 This is a **Python FastAPI microservice** designed to provide music recommendations. It utilizes an asynchronous driver (**Motor**) to connect to **MongoDB Atlas** and is containerized using **Docker** for cloud deployment on **Render**.
 
-
+This project was completed as part of **Assignment 4: Deploying a FastAPI Application with MongoDB Atlas and Render**.
 
 ---
 
@@ -96,7 +95,6 @@ This command ensures the necessary **system certificates (`ca-certificates`, `op
 | `GET` | `/` | Basic health check. | Service is running. |
 | `GET` | `/health/db` | **Mandatory Check.** Verifies active connectivity to MongoDB Atlas. | Must return `{"status": "ok", ...}` with HTTP 200. |
 | `GET` | `/recommendations/{user_id}` | Fetches recommendations based on user reviews (uses fake review service logic). | Service logic is functional. |
-
 
 ```
 ```
