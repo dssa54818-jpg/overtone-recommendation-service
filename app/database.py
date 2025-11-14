@@ -1,42 +1,33 @@
-# app/database.py (обновлено)
+# app/database.py
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
-from typing import Optional
 
-# Получение переменных окружения
-# На Render вы установите MONGO_URI и DB_NAME
-MONGO_URI: Optional[str] = os.environ.get("MONGO_URI")
-DB_NAME: Optional[str] = os.environ.get("DB_NAME")
+MONGO_URI = os.environ.get("MONGO_URI")
+DB_NAME = os.environ.get("DB_NAME")
 
-client: Optional[AsyncIOMotorClient] = None
+client = None
 db = None
 
 if MONGO_URI and DB_NAME:
     client = AsyncIOMotorClient(MONGO_URI)
     db = client[DB_NAME]
-else:
-    # Опционально: можно добавить лог или Exception
-    print("WARNING: MONGO_URI or DB_NAME not set. Database connection will be unavailable.")
 
 async def check_db_connection() -> bool:
-    """Проверяет работоспособность подключения к MongoDB (пингует сервер)."""
-    if client is None:
+    """РџСЂРѕРІРµСЂСЏРµС‚ СЂР°Р±РѕС‚РѕСЃРїРѕСЃРѕР±РЅРѕСЃС‚СЊ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє MongoDB Atlas."""
+    if not client:
         return False
     try:
-        # Команда ping для проверки подключения к БД
+        # РћС‚РїСЂР°РІР»СЏРµРј РєРѕРјР°РЅРґСѓ ping РґР»СЏ РїСЂРѕРІРµСЂРєРё СЃРѕРµРґРёРЅРµРЅРёСЏ
         await client.admin.command('ping')
         return True
-    except Exception as e:
-        print(f"MongoDB connection failed: {e}")
+    except Exception:
         return False
 
-# Добавьте эти функции в main.py для корректного закрытия соединения
+# Р¤СѓРЅРєС†РёРё РґР»СЏ startup/shutdown (РЅСѓР¶РЅС‹ РґР»СЏ main.py)
 async def connect_db():
-    if client:
-        await client.get_io_loop() # Обеспечивает инициализацию
-        print("MongoDB connected successfully.")
+    # [Р”РѕР±Р°РІСЊС‚Рµ Р»РѕРіРёРєСѓ РїРѕРґРєР»СЋС‡РµРЅРёСЏ]
+    pass # РЈРїСЂРѕС‰РµРЅРЅРѕ, Motor РїРѕРґРєР»СЋС‡Р°РµС‚СЃСЏ РїСЂРё РїРµСЂРІРѕРј Р·Р°РїСЂРѕСЃРµ
 
 async def close_db_connection():
     if client:
         client.close()
-        print("MongoDB connection closed.")
