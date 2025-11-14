@@ -6,9 +6,9 @@ router = APIRouter()
 
 @router.get("/db")
 async def db_health_check():
-    """Проверяет подключение к MongoDB Atlas."""
+    """РџСЂРѕРІРµСЂСЏРµС‚ РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє MongoDB Atlas."""
     if await check_db_connection():
         return {"status": "ok", "database": "MongoDB Atlas", "connection": "successful"}
-    
-    # Если подключение не удалось, возвращаем ошибку 503
+
+    # Р•СЃР»Рё РїРѕРґРєР»СЋС‡РµРЅРёРµ РЅРµ СѓРґР°Р»РѕСЃСЊ, РІРѕР·РІСЂР°С‰Р°РµРј РѕС€РёР±РєСѓ 503
     raise HTTPException(status_code=503, detail="Database connection failed")
